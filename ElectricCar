@@ -1,0 +1,112 @@
+public class ElectricCar {
+    private String carMake;
+    private double powerConsumption;
+    private int chargingTime;
+    private int distance;
+    private PowerStation  station;
+
+    public ElectricCar (String carMake, double powerConsumption, int chargingTime, int distance, PowerStation station ) {
+
+        this.carMake = carMake;
+        this.powerConsumption = powerConsumption;
+        this.chargingTime = chargingTime;
+        this.distance = distance;
+        this.station  = station;
+
+    }
+
+
+    public double payment100() {
+        return (powerConsumption * station.getPowerPrice()) ;
+    }
+
+    public double payment (int price) {
+        return (distance * payment100() / 100);
+    }
+
+    public double tripDuration(int tripDistance, double speed) {
+        return (tripDistance / distance) * chargingTime + tripDistance / speed;
+    }
+
+    public String toString() {
+        return "Ihe  payment price per 100/ km is  : " + payment100() + "Car Model  is "+ carMake ;
+    }
+
+    public String getCarMake() {
+        return carMake;
+    }
+
+    public double getPowerConsumption() {
+        return powerConsumption;
+    }
+
+    public int getChargingTime() {
+        return chargingTime;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+    public  PowerStation getStation (){
+        return  station ;
+    }
+
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
+    }
+
+    public void setPowerConsumption(double powerConsumption) {
+        this.powerConsumption = powerConsumption;
+    }
+
+    public void setChargingTime(int chargingTime) {
+        this.chargingTime = chargingTime;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public  void setStation (PowerStation station) {
+        this.station = station ;
+    }
+
+}
+
+// Creation of a Second Class 
+
+public class PowerStation {
+    private double powerPrice;
+
+    public PowerStation(double powerPrice) {
+        this.powerPrice = powerPrice;
+    }
+
+    public double getPowerPrice() {
+
+        return powerPrice;
+    }
+
+    public void setPowerPrice (double powerPrice) {
+        this.powerPrice = powerPrice;
+    }
+
+}
+/// main class created  to call the methods  
+
+
+public class Loader {
+    public static void main(String[] args) {
+
+        PowerStation Tall= new PowerStation(0.15);
+        PowerStation Narva= new PowerStation( 0.10);
+        ElectricCar a = new ElectricCar("Tesla", 226.7, 22, 100, Tall ) ;
+        ElectricCar  b = new ElectricCar( "Mazda ", 225.0 , 10, 150, Narva );
+
+        System.out.println(a.toString());
+        System.out.println( " Charging  price  in Tallinn per Hour is " + Tall.getPowerPrice());
+        System.out.println( "Charging price in Narva per Hour is  " +  Narva.getPowerPrice());
+
+    }
+}
+
